@@ -183,14 +183,18 @@ class ContentGenerationController extends GetxController {
   void _updateSubjectList(String board, String medium, String classVal) {
     if (userClasses == null) return;
 
-    final List<String> filteredSubjects = userClasses!
+    final filteredSubjects = userClasses!
         .where(
-          (ClassDetail e) =>
+          (e) =>
               e.board.toString() == board &&
               e.medium.toString() == medium &&
               e.classClass.toString() == classVal,
-        ) // replace 'classClass' if your model uses a different name
-        .map((ClassDetail e) => '${e.name} Sem ${e.sem}')
+        )
+        .map((e) {
+          // Fix Sem 0 → Show actual semester (1, 2, etc.)
+          final sem = e.sem.value ?? 0; // Null-safe sem (0 hides)
+          return sem > 0 ? '${e.name} Sem $sem' : '${e.name}';
+        })
         .toSet()
         .toList();
 
