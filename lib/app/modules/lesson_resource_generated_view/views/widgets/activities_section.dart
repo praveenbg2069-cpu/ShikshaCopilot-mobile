@@ -219,6 +219,7 @@ class ActivitiesSection extends GetView<LessonResourceGeneratedViewController> {
                                       (activity!.id as String).isNotEmpty) {
                                     final result = await Get.bottomSheet(
                                       ReviewActivityBottomSheet(
+                                        resourceId: parentId,
                                         activityId: activity!.id as String,
                                       ),
                                       isScrollControlled: true,

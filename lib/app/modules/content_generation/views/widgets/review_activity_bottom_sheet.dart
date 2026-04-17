@@ -9,9 +9,14 @@ import 'package:get/get.dart';
 class ReviewActivityBottomSheet extends StatefulWidget {
   /// The ID of the activity to be reviewed.
   final String activityId;
+  final String resourceId;
 
   /// Creates a new [ReviewActivityBottomSheet].
-  const ReviewActivityBottomSheet({required this.activityId, super.key});
+  const ReviewActivityBottomSheet({
+    required this.activityId,
+    required this.resourceId,
+    super.key,
+  });
 
   @override
   State<ReviewActivityBottomSheet> createState() =>
@@ -76,8 +81,6 @@ class _ReviewActivityBottomSheetState extends State<ReviewActivityBottomSheet> {
     final lessonResourceController =
         Get.find<LessonResourceGeneratedViewController>();
 
-    const String resourceId = 'activities'; // constant as per your payload
-
     final bool performed = _activityPerformed;
     final String? engagement = _studentEngagement;
     // Remove ' Alignment' suffix to match backend expected values
@@ -90,7 +93,7 @@ class _ReviewActivityBottomSheetState extends State<ReviewActivityBottomSheet> {
     final String? notPerformedReason = _notPerformedReason;
 
     await lessonResourceController.addRatingForActivity(
-      resourceId: resourceId,
+      resourceId: widget.resourceId,
       activityId: widget.activityId,
       performed: performed,
       engagement: performed ? engagement : null,
