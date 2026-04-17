@@ -5,9 +5,14 @@ import 'package:dio/dio.dart' as d;
 class AddActivityMediaUrlBottomSheet extends StatefulWidget {
   /// The ID of the item to which the media is being added.
   final String itemId;
+  final String resourceId;
 
   /// Creates an [AddActivityMediaUrlBottomSheet].
-  const AddActivityMediaUrlBottomSheet({required this.itemId, super.key});
+  const AddActivityMediaUrlBottomSheet({
+    required this.itemId,
+    required this.resourceId,
+    super.key,
+  });
 
   @override
   State<AddActivityMediaUrlBottomSheet> createState() =>
@@ -300,7 +305,7 @@ class _AddActivityMediaUrlBottomSheetState
                         return;
                       }
                       await _controllerResource.addMediaToResourceActivity(
-                        resourceId: 'activities',
+                        resourceId: widget.resourceId,
                         itemId: widget.itemId,
                         type: _selectedType, // AUTO + USER OVERRIDE
                         title: '', // Optionally add title input

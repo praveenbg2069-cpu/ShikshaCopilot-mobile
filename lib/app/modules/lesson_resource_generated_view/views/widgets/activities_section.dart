@@ -12,12 +12,14 @@ class ActivitiesSection extends GetView<LessonResourceGeneratedViewController> {
   /// The section data.
   final dynamic section;
   final FromPage fromPage;
+  final String parentId;
 
   /// Creates an [ActivitiesSection].
   const ActivitiesSection({
     Key? key,
     required this.section,
     required this.fromPage,
+    required this.parentId,
   }) : super(key: key);
 
   @override
@@ -90,6 +92,7 @@ class ActivitiesSection extends GetView<LessonResourceGeneratedViewController> {
                               Get.bottomSheet(
                                 AddActivityMediaUrlBottomSheet(
                                   itemId: activityId,
+                                  resourceId: parentId,
                                 ),
                                 isScrollControlled: true,
                                 ignoreSafeArea: false,
@@ -107,7 +110,7 @@ class ActivitiesSection extends GetView<LessonResourceGeneratedViewController> {
                             media: m,
                             onDelete: () async {
                               await controller.deleteMediaFromResourceActivity(
-                                resourceId: 'activities',
+                                resourceId: parentId,
                                 itemId: activity?.id,
                                 mediaId: m.id,
                               );
