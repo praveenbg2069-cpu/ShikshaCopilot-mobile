@@ -723,7 +723,7 @@ class Question {
 
   /// Creates a [Question] object from a JSON map.
   factory Question.fromJson(Map<String, dynamic> json) => Question(
-    question: json['question'],
+    question: (json['question'] as String?) ?? '',
     options: json['options'] == null
         ? <String>[]
         : List<String>.from(json['options']!.map((x) => x)),
