@@ -837,7 +837,7 @@ class _LessonPlanGeneratedBodyState extends State<LessonPlanGeneratedBody>
             child: VideoCard(
               video: video,
               onPlay: () async {
-                final Uri uri = Uri.parse(video.url as String);
+                final Uri uri = Uri.parse(video['url'] as String);
                 if (await canLaunchUrl(uri)) {
                   await launchUrl(uri, mode: LaunchMode.externalApplication);
                 } else {
@@ -1466,7 +1466,7 @@ class VideoCard extends StatelessWidget {
               child: AspectRatio(
                 aspectRatio: 16 / 9,
                 child: Image.network(
-                  getYoutubeThumbnail(video.url as String),
+                  getYoutubeThumbnail(video['url'] as String),
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: 180,
@@ -1495,7 +1495,7 @@ class VideoCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: Text(
-            video.title as String,
+            video['title'] as String? ?? 'Untitled Video',
             textAlign: TextAlign.center,
             style: AppTextStyle.lato(
               fontWeight: FontWeight.w700,
