@@ -104,11 +104,16 @@ class ClassDetailCard extends GetView<ProfileController> {
               value: classDetail.subject.value,
               onChanged: (String? val) {
                 classDetail.subject.value = val;
-                if (classDetail.subjectDetails?.isEmpty ?? true) {
-                  classDetail.subjectDetails = controller.setSubjectDetail(
-                    classDetail,
-                  );
-                }
+                //  if (classDetail.subjectDetails?.isEmpty ?? true) {}
+
+                classDetail.subjectDetails = controller.setSubjectDetail(
+                  classDetail,
+                );
+                // print('AppDropdown Selected subject: $val');
+                // print('AppDropdown Class detail: ${classDetail.toJson()}');
+                // print(
+                //   'AppDropdown Subject details: ${classDetail.subjectDetails.toString()}',
+                // );
               },
               label: LocaleKeys.subject.tr,
               name: 'subject_$index',

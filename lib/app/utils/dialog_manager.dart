@@ -209,6 +209,26 @@ class DialogManager {
         ),
       );
 
+  static void showNoVideosDialog({void Function()? onPositiveClick}) {
+    showCupertinoDialog<void>(
+      context: Get.context!,
+      builder: (BuildContext context) => _appDialogWidget(
+        message:
+            'Selected combination does not include videos. '
+            'Do you want to continue ?',
+        negativeText: 'Cancel',
+        positiveText: 'Ok',
+        onNegativeClick: () {
+          Get.back();
+        },
+        onPositiveClick: () {
+          Get.back();
+          onPositiveClick?.call();
+        },
+      ),
+    );
+  }
+
   /// Dialog widget
   static Widget _appDialogWidget({
     required String message,

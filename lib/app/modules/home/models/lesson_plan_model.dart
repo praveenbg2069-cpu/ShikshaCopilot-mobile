@@ -24,10 +24,13 @@ class LessonPlan {
         ? <Plan>[]
         : List<Plan>.from(json['data']!.map((x) => Plan.fromJson(x))),
   );
+
   /// Indicates whether the request was successful.
   final bool? success;
+
   /// A message providing details about the request status.
   final String? message;
+
   /// A list of plans.
   final List<Plan>? data;
 
@@ -103,32 +106,46 @@ class Plan {
         ? null
         : PurpleResource.fromJson(json['resource']),
   );
+
   /// The unique identifier for the plan.
   final String? id;
+
   /// Indicates whether this is a lesson plan.
   final bool? isLesson;
+
   /// The status of the plan.
   final String? status;
+
   /// Indicates whether the plan has been generated.
   final bool? isGenerated;
+
   /// A list of learning outcomes.
   final List<String>? learningOutcomes;
+
   /// Indicates whether the plan is completed.
   final bool? isCompleted;
+
   /// A list of resources for the plan.
   final List<ResourceElement>? resources;
+
   /// A list of additional resources.
   final List<dynamic>? additionalResources;
+
   /// A list of instruction sets.
   final List<dynamic>? instructionSet;
+
   /// The date and time when the plan was created.
   final DateTime? createdAt;
+
   /// The date and time when the plan was last updated.
   final DateTime? updatedAt;
+
   /// The lesson associated with the plan.
   final Lesson? lesson;
+
   /// The month when the plan was created.
   final int? createdMonth;
+
   /// The resource associated with the plan.
   final PurpleResource? resource;
 
@@ -236,28 +253,40 @@ class Lesson {
         ? <dynamic>[]
         : List<dynamic>.from(json['videos']!.map((x) => x)),
   );
+
   /// The unique identifier for the lesson.
   final String? id;
+
   /// The name of the lesson.
   final String? name;
+
   /// The class the lesson is for.
   final int? lessonClass;
+
   /// Indicates whether the lesson is for all subjects.
   final bool? isAll;
+
   /// The subject of the lesson.
   final String? subject;
+
   /// A list of sub-topics for the lesson.
   final List<String>? subTopics;
+
   /// A list of teaching models for the lesson.
   final List<dynamic>? teachingModel;
+
   /// A list of learning outcomes for the lesson.
   final List<String>? learningOutcomes;
+
   /// The ID of the template used for the lesson.
   final String? templateId;
+
   /// The chapter associated with the lesson.
   final Chapter? chapter;
+
   /// The subjects associated with the lesson.
   final Subjects? subjects;
+
   /// A list of videos for the lesson.
   final List<dynamic>? videos;
 
@@ -339,16 +368,22 @@ class Chapter {
     board: json['board'],
     orderNumber: json['orderNumber'],
   );
+
   /// The unique identifier for the chapter.
   final String? id;
+
   /// The topics in the chapter.
   final String? topics;
+
   /// A list of sub-topics in the chapter.
   final List<String>? subTopics;
+
   /// The medium of the chapter.
   final String? medium;
+
   /// The board of the chapter.
   final String? board;
+
   /// The order number of the chapter.
   final int? orderNumber;
 
@@ -391,8 +426,10 @@ class Subjects {
   /// Creates a new [Subjects] instance from a JSON map.
   factory Subjects.fromJson(Map<String, dynamic> json) =>
       Subjects(name: json['name'], sem: json['sem']);
+
   /// The name of the subject.
   final String? name;
+
   /// The semester of the subject.
   final int? sem;
 
@@ -446,30 +483,43 @@ class PurpleResource {
         ? null
         : Subjects.fromJson(json['subjects']),
   );
+
   /// The unique identifier for the resource.
   final String? id;
+
   /// The name of the lesson.
   final String? lessonName;
+
   /// The medium of the resource.
   final String? medium;
+
   /// The ID of the lesson.
   final String? lessonId;
+
   /// The class the resource is for.
   final int? resourceClass;
+
   /// Indicates whether the resource is for all subjects.
   final bool? isAll;
+
   /// The board of the resource.
   final String? board;
+
   /// The subject of the resource.
   final String? subject;
+
   /// A list of sub-topics for the resource.
   final List<String>? subTopics;
+
   /// A list of learning outcomes for the resource.
   final List<String>? learningOutcomes;
+
   /// The ID of the template used for the resource.
   final String? templateId;
+
   /// The chapter associated with the resource.
   final Chapter? chapter;
+
   /// The subjects associated with the resource.
   final Subjects? subjects;
 
@@ -544,12 +594,16 @@ class ResourceElement {
               ),
         outputFormat: json['outputFormat'],
       );
+
   /// The unique identifier for the resource element.
   final String? id;
+
   /// The title of the resource element.
   final String? title;
+
   /// The content of the resource element.
   final List<ResourceContent>? content;
+
   /// The output format of the resource element.
   final String? outputFormat;
 
@@ -604,24 +658,32 @@ class ResourceContent {
         id: json['id'],
         title: json['title'],
         preparation: json['preparation'],
-        requiredMaterials: json['required_materials'],
-        obtainingMaterials: json['obtaining_materials'],
+        // requiredMaterials: json['required_materials'],
+        // obtainingMaterials: json['obtaining_materials'],
         recap: json['recap'],
       );
+
   /// The difficulty of the resource content.
   final String? difficulty;
+
   /// The content of the resource.
   final List<ContentContent>? content;
+
   /// The unique identifier for the resource content.
   final String? id;
+
   /// The title of the resource content.
   final String? title;
+
   /// The preparation instructions for the resource.
   final String? preparation;
+
   /// The required materials for the resource.
   final String? requiredMaterials;
+
   /// Instructions for obtaining materials for the resource.
   final String? obtainingMaterials;
+
   /// A recap of the resource content.
   final String? recap;
 
@@ -664,7 +726,6 @@ class ResourceContent {
 
 /// Represents the content within resource content.
 class ContentContent {
-
   /// Creates a new [ContentContent] instance.
   ContentContent({
     this.type,
@@ -673,6 +734,7 @@ class ContentContent {
     this.question,
     this.description,
   });
+
   /// Creates a new [ContentContent] instance from a JSON map.
   factory ContentContent.fromJson(Map<String, dynamic> json) => ContentContent(
     type: json['type'],
@@ -685,14 +747,19 @@ class ContentContent {
     question: json['question'],
     description: json['description'],
   );
+
   /// The type of the content.
   final String? type;
+
   /// A list of questions.
   final List<Question>? questions;
+
   /// The title of the content.
   final String? title;
+
   /// The question.
   final String? question;
+
   /// The description of the content.
   final String? description;
 
@@ -736,8 +803,10 @@ class Question {
         ? <String>[]
         : List<String>.from(json['options']!.map((x) => x)),
   );
+
   /// The question text.
   final String? question;
+
   /// A list of options for the question.
   final List<String>? options;
 

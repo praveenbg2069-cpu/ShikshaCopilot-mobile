@@ -525,8 +525,8 @@ class ResourceContent {
         id: json['id'],
         title: json['title'],
         preparation: json['preparation'],
-        requiredMaterials: json['required_materials'],
-        obtainingMaterials: json['obtaining_materials'],
+        // requiredMaterials: json['required_materials'],
+        // obtainingMaterials: json['obtaining_materials'],
         recap: json['recap'],
         media: json['media'] == null
             ? null

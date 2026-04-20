@@ -270,12 +270,16 @@ class Chapter {
     updatedAt: DateTime.parse(json['updatedAt']),
     v: json['__v'],
     indexPath: json['indexPath'],
-    learningOutcomes: List<String>.from(json['learningOutcomes'].map((x) => x)),
-    topicsLearningOutcomes: List<TopicsLearningOutcome>.from(
-      json['topicsLearningOutcomes'].map(
-        (x) => TopicsLearningOutcome.fromJson(x),
-      ),
-    ),
+    learningOutcomes: json['learningOutcomes'] == null
+        ? []
+        : List<String>.from(json['learningOutcomes'].map((x) => x)),
+    topicsLearningOutcomes:
+        (json['topicsLearningOutcomes'] as List<dynamic>?)
+            ?.map(
+              (x) => TopicsLearningOutcome.fromJson(x as Map<String, dynamic>),
+            )
+            .toList() ??
+        [],
   );
 
   /// The ID of the chapter.
@@ -457,8 +461,8 @@ class ResourceContent {
         id: json['id'],
         title: json['title'],
         preparation: json['preparation'],
-        requiredMaterials: json['required_materials'],
-        obtainingMaterials: json['obtaining_materials'],
+        // requiredMaterials: json['required_materials'],
+        // obtainingMaterials: json['obtaining_materials'],
         recap: json['recap'],
         media: json['media'] == null
             ? null
@@ -719,7 +723,7 @@ class Question {
 
   /// Creates a [Question] object from a JSON map.
   factory Question.fromJson(Map<String, dynamic> json) => Question(
-    question: json['question'],
+    question: (json['question'] as String?) ?? '',
     options: json['options'] == null
         ? <String>[]
         : List<String>.from(json['options']!.map((x) => x)),

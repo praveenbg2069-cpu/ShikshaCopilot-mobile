@@ -352,6 +352,7 @@ class ProfileController extends GetxController
 
     // Store flattened User JSON directly
     LocalStore.user(json.encode(userJson));
+    UserProvider.currentUser = User.fromJson(userJson);
 
     debugPrint('✅ Stored flattened user: ${flattenedClasses.length} classes');
     debugPrint('Flattened classes: ${jsonEncode(flattenedClasses)}');

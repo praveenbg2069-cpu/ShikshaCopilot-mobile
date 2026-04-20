@@ -375,6 +375,33 @@ class LessonPlanGenerationDetailsController extends GetxController {
         state: SnackBarState.danger,
       );
     } else if (generateLessonResponseModel?.success == true) {
+      try {
+        final lesson = generateLessonResponseModel?.data?.isNotEmpty == true
+            ? generateLessonResponseModel!.data!.first
+            : null;
+
+        final bool hasVideos = lesson?.videos?.isNotEmpty == true;
+
+        if (includeVideos.value && !hasVideos) {
+          // show your confirm dialog here
+          print('No videos available');
+
+          isLoadingGenerateLesson(false);
+          Loader.dismiss();
+          DialogManager.showNoVideosDialog(
+            onPositiveClick: () {
+              includeVideos.value = false;
+              generateLesson();
+            },
+          );
+
+          return;
+        }
+      } catch (e) {
+        isLoadingGenerateLesson(false);
+        Loader.dismiss();
+        debugPrint('Error parsing lesson generation response: $e');
+      }
       final String? lessonId = generateLessonResponseModel?.data?.first?.id;
       generatedLessonResponse.value = generateLessonResponseModel;
       if (lessonId != null) {

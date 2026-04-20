@@ -16,7 +16,7 @@ class LessonResourceTabContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final outputFormat = section?.outputFormat;
-
+    final parentId = section?.id ?? '';
     switch (outputFormat) {
       case 'json_1':
         return QuestionBankWidget(
@@ -30,6 +30,7 @@ class LessonResourceTabContent extends StatelessWidget {
         return ActivitiesSection(
           section: section,
           fromPage: fromPage,
+          parentId: parentId,
         ).paddingSymmetric(horizontal: 24);
       default:
         return Container();

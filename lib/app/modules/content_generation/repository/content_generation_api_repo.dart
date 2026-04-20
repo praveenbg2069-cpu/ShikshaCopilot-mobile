@@ -62,8 +62,8 @@ class ContentGenerationApiRepo {
       if (response?.statusCode == 200 && response?.data != null) {
         return LessonPlan.fromJson(response!.data as Map<String, dynamic>);
       }
-    } catch (e) {
-      debugPrint('Error: $e');
+    } catch (e, stackTrace) {
+      debugPrint('Error: $e $stackTrace');
     }
     return null;
   }

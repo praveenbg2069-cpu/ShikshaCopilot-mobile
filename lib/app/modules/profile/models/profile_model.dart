@@ -391,6 +391,9 @@ class SubjectDetail {
     'subjectName': subjectName,
     'sem': sem,
   };
+
+  @override
+  String toString() => 'SubjectDetail{subjectName: $subjectName, sem: $sem}';
 }
 
 /// Represents a facility.

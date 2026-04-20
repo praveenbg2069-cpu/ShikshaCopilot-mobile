@@ -137,8 +137,9 @@ class LessonPlanGenerationDetailsRepo {
     } on DioException catch (e) {
       debugPrint('Error fetching learning outcomes: $e');
       return e.response?.data['message'];
-    } catch (e) {
+    } catch (e, stackTrace) {
       debugPrint('Error fetching learning outcomes: $e');
+      debugPrint('Error Stack Trace: $stackTrace');
     }
     return null;
   }

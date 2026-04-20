@@ -133,9 +133,15 @@ class LessonResourceFeedbackSection
           children: <Widget>[
             Expanded(
               child: ElevatedButton(
-                onPressed: controller.saveResourcePlan,
+                onPressed: controller.feedbackRadioValue.value.isNotEmpty
+                    ? controller.saveResourcePlan
+                    : null,
+                // onPressed: controller.saveResourcePlan,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.k46A0F1,
+                  backgroundColor:
+                      controller.feedbackRadioValue.value.isNotEmpty
+                      ? AppColors.k46A0F1
+                      : AppColors.k46A0F1.withOpacity(0.3),
                   padding: const EdgeInsets.symmetric(vertical: 18),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4),
