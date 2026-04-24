@@ -141,10 +141,20 @@ class DownloadSection extends GetView<ViewQuestionPaperController> {
             color: AppColors.k46A0F1,
             shape: BoxShape.circle,
           ),
-          child: Icon(
-            Icons.picture_as_pdf_rounded,
-            size: 20.dg,
-            color: AppColors.kFFFFFF,
+          // child: Icon(
+          //   Icons.picture_as_pdf_rounded,
+          //   size: 20.dg,
+          //   color: AppColors.kFFFFFF,
+          // ),
+          child: SvgPicture.asset(
+            AppImages.icDocs,
+
+            width: 20.dg,
+            height: 20.dg,
+            colorFilter: const ColorFilter.mode(
+              AppColors.kFFFFFF,
+              BlendMode.srcIn,
+            ),
           ),
         ),
         SizedBox(width: 16.w),
