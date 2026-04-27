@@ -15,6 +15,7 @@ class HelpView extends GetView<HelpController> {
     final NoInternetScreenController connectivityController =
         Get.find<NoInternetScreenController>()..onReConnect = controller.onInit;
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
     return Obx(
       () => !connectivityController.isConnected()
           ? const NoInternetScreenView()
@@ -102,6 +103,13 @@ class HelpView extends GetView<HelpController> {
                                     .helpVideoModel
                                     .value!
                                     .data![index];
+
+                                final String title =
+                                    '${video.title ?? ''}${video.state == 'Telangana'
+                                        ? ' (Telugu)'
+                                        : video.state == 'Karnataka'
+                                        ? ' (Kannada)'
+                                        : ''}';
 
                                 final String? videoId =
                                     YoutubePlayer.convertUrlToId(
@@ -214,8 +222,8 @@ class HelpView extends GetView<HelpController> {
 
                                         SizedBox(height: 8.h),
                                         Text(
-                                          video.title ?? '',
-                                          maxLines: 1,
+                                          title,
+                                          maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.center,
                                           style: AppTextStyle.lato(
