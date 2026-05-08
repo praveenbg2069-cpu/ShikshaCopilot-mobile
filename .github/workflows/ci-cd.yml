@@ -1,0 +1,64 @@
+name: Build Test Deploy
+
+on:
+  push:
+    branches:
+      - main
+    pull_request:
+      branches:
+        - main
+jobs:
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+          flutter-version: '3.22.0'
+
+      - name: Install Dependencies
+        run: flutterpub get
+
+      - name: Build APK
+        run: flutter build apk --release
+
+  test:
+    name: Run Test
+    runs_on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+
+      - name: Install Dependencies
+        run: flutter test
+
+  deploy:
+    name: Deploy Application
+    runs_on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/Checkout@v4
+
+      - name: Build Release APK
+        run: flutter build apk --Release
+
+      - name: Upload APK Artifact
+        uses: actions/Upload-artifact@v4
+        with:
+          name: flutter-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      
+
+      
